@@ -68,7 +68,7 @@ export default function Header(){
                         <div>
                             <ul>
                                 <li onClick={ocultar} className="font-marvel text-2xl text-gray-900 hover:text-black hover:decoration-black dark:text-gray-100 dark:hover:text-gray-400 dark:hover:decoration-sky-500 hover:underline hover:underline-offset-8 p-2">
-                                <Link href='/peliculas'> 
+                                <Link href='/films'> 
                                     <a>Películas</a>
                                 </Link>
                                 </li>

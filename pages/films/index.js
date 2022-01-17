@@ -54,7 +54,7 @@ export default function peliculas( {peliculas, error} ) {
 export async function getStaticProps() {
     
     try {
-        const resp = await fetch("https://apimarvel.guzmidev.com/films",{ headers: {"Authorization" : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDEyOTc5ODYsImV4cCI6MTY3MjQwMTk4Niwic2NvcGUiOlsicmVhZCIsIndyaXRlIiwiZGVsZXRlIl19.DknOMggi-Xd2DoUgOun16TyvRuyhcdrxkb3J8tyO26g`} })
+        const resp = await fetch(`${process.env.NEXT_APP_URL_APICASERA}films`,{ headers: {"Authorization" : `Bearer ${process.env.NEXT_APP_TOKEN_JWT_APICASERA}`} })
         const peliculas = await resp.json()
 
             return {

@@ -36,7 +36,7 @@ export async function getStaticProps(context) {
 
     try {
         const { id } = context.params
-        const resp = await fetch(`https://apimarvel.guzmidev.com/film/${id}`,{ headers: {"Authorization" : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDEyOTc5ODYsImV4cCI6MTY3MjQwMTk4Niwic2NvcGUiOlsicmVhZCIsIndyaXRlIiwiZGVsZXRlIl19.DknOMggi-Xd2DoUgOun16TyvRuyhcdrxkb3J8tyO26g`} })
+        const resp = await fetch(`${process.env.NEXT_APP_URL_APICASERA}film/${id}`,{ headers: {"Authorization" : `Bearer ${process.env.NEXT_APP_TOKEN_JWT_APICASERA}`} })
         const film = await resp.json()
 
         return {
@@ -55,11 +55,19 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
+    const resp = await fetch(`${process.env.NEXT_APP_URL_APICASERA}films`,{ headers: {"Authorization" : `Bearer ${process.env.NEXT_APP_TOKEN_JWT_APICASERA}`} })
+    const peliculas = await resp.json()
+
+    const paths = peliculas.map((film) => {
+        return {
+            params: {
+                id: `${film.id}`,
+            }
+        }
+    })
+
     return {
-        paths: [
-            { params: {id: "1"} },
-            { params: {id: "2"} }
-        ],
+        paths,
         fallback: true
     }
 }

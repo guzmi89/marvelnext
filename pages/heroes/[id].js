@@ -26,13 +26,13 @@ const Character = ( {primero, error} ) => {
             <Head>
                 <title>{primero.name}</title>
             </Head>
-            <div class="m-4 w-full md:w-2/4 mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
-                <div class="px-4 py-2">
-                    <h1 class="text-3xl font-bold text-gray-800 dark:text-white">{primero.name}</h1>
-                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">{primero.description}</p>
+            <div className="m-4 w-full md:w-2/4 mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+                <div className="px-4 py-2">
+                    <h1 className="text-3xl font-bold text-gray-800 dark:text-white">{primero.name}</h1>
+                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{primero.description}</p>
                 </div>
 
-                <img class="object-cover w-full h-96 mt-2" src={primero.thumbnail.path+'.'+primero.thumbnail.extension} alt={primero.name} title={primero.name} />
+                <img className="object-cover w-full h-96 mt-2" src={primero.thumbnail.path+'.'+primero.thumbnail.extension} alt={primero.name} title={primero.name} />
             </div>
         </>
     )
@@ -42,7 +42,7 @@ export async function getStaticProps(context) {
 
     try {
         const { id } = context.params
-        const resp = await fetch(`https://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=bd83974f8c0124c0b4006bb69fecc3b4&hash=6253d203f94171a77b3b7f026a16e3b7`)
+        const resp = await fetch(`${process.env.NEXT_APP_URL_APIMARVEL}characters/${id}?ts=1&apikey=${process.env.NEXT_APP_TOKEN_APIMARVEL}`)
         const character = await resp.json()
         const primero = character.data.results[0]
 
@@ -62,11 +62,19 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
+    const resp = await fetch(`${process.env.NEXT_APP_URL_APIMARVEL}characters?series=22547&limit=48&ts=1&apikey=${process.env.NEXT_APP_TOKEN_APIMARVEL}`)
+    const characters = await resp.json()
+
+    const paths = characters.data.results.map((character) => {
+        return {
+            params: {
+                id: `${character.id}`,
+            }
+        }
+    })
+
     return {
-        paths: [
-            { params: {id: "1011227"} },
-            { params: {id: "1009165"} }
-        ],
+        paths,
         fallback: true
     }
 }

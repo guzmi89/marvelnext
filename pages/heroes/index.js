@@ -53,7 +53,7 @@ export default function Heroes( {characters, error} ) {
 export async function getStaticProps() {
     
     try {
-        const resp = await fetch("https://gateway.marvel.com/v1/public/characters?series=22547&limit=48&ts=1&apikey=bd83974f8c0124c0b4006bb69fecc3b4&hash=6253d203f94171a77b3b7f026a16e3b7")
+        const resp = await fetch(`${process.env.NEXT_APP_URL_APIMARVEL}characters?series=22547&limit=48&ts=1&apikey=${process.env.NEXT_APP_TOKEN_APIMARVEL}`)
         const characters = await resp.json()
 
             return {

@@ -50,7 +50,7 @@ export default function Comics( {comics, error} ) {
 export async function getStaticProps() {
     
     try {
-        const resp = await fetch("https://gateway.marvel.com/v1/public/comics?limit=48&ts=1&apikey=bd83974f8c0124c0b4006bb69fecc3b4&hash=6253d203f94171a77b3b7f026a16e3b7")
+        const resp = await fetch(`${process.env.NEXT_APP_URL_APIMARVEL}comics?limit=48&ts=1&apikey=${process.env.NEXT_APP_TOKEN_APIMARVEL}`)
         const comics = await resp.json()
 
             return {
