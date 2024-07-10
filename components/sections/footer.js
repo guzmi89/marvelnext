@@ -6,7 +6,7 @@ export default function Footer() {
             <div className="font-marvel flex flex-col w-96 items-center text-white">
                 <a className="font-marvel inline mb-2 text-slate-800 hover:text-black dark:text-white dark:hover:text-gray-500 text-xl" href="">Sobre el creador</a>
                 <a target="_blank" className="font-marvel inline mb-2 text-slate-800 hover:text-black dark:text-white dark:hover:text-gray-500 text-xl" href="https://www.marvel.com/" rel="noreferrer">Web Oficial</a>
-                <a target="_blank" className="font-marvel inline mb-2 text-slate-800 hover:text-black dark:text-white dark:hover:text-gray-500 text-xl" href="https://github.com/guzmi89" rel="noreferrer">GitHub</a>
+                <a target="_blank" className="font-marvel inline mb-2 text-slate-800 hover:text-black dark:text-white dark:hover:text-gray-500 text-xl" href="https://github.com/guzmi89/marvelnext" rel="noreferrer">GitHub</a>
             </div>
             <div className="w-96 text-center text-white">
                 <h3 className="font-marvel text-gray-800 dark:text-zinc-100 text-2xl">SÍGUENOS</h3>
