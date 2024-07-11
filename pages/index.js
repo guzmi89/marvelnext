@@ -41,7 +41,7 @@ export default function Home( {characters, error} ) {
 export async function getStaticProps() {
 
     try {
-        const resp = await fetch(`${process.env.NEXT_APP_URL_APIMARVEL}characters?series=22547&limit=12&ts=1&apikey=${process.env.NEXT_APP_TOKEN_APIMARVEL}`)
+        const resp = await fetch(`${process.env.NEXT_APP_URL_APIMARVEL}characters?series=22547&limit=12&ts=${process.env.NEXT_APP_TS_APIMARVEL}&apikey=${process.env.NEXT_APP_TOKEN_APIMARVEL}&hash=${process.env.NEXT_APP_HASH_APIMARVEL}`)
         const characters = await resp.json()
 
             return {
